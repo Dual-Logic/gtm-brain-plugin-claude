@@ -18,9 +18,11 @@ cd "$ROOT"
 VERSION="$(python3 -c "import json;print(json.load(open('.claude-plugin/plugin.json'))['version'])")"
 OUT="dist/gtm-brain-plugin-${VERSION}.zip"
 
-# What a consumer needs — the plugin surface only.
+# What a consumer needs — the plugin surface only. Note we ship ONLY plugin.json from
+# .claude-plugin/, NOT marketplace.json: marketplace.json is for the `/plugin marketplace
+# add` path, not part of a directly-uploaded plugin.
 INCLUDE=(
-  ".claude-plugin"
+  ".claude-plugin/plugin.json"
   "skills"
   "reference"
   "README.md"
@@ -30,6 +32,7 @@ INCLUDE=(
 # Belt-and-suspenders excludes (in case a path above ever widens).
 EXCLUDE=(
   "*/.git/*" "*.DS_Store" "*/docs/*" "*/dist/*" "*/scripts/*" "*/node_modules/*"
+  "*/marketplace.json"
 )
 
 mkdir -p dist
