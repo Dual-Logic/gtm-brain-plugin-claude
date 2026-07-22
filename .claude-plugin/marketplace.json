@@ -1,0 +1,19 @@
+{
+  "name": "dual-logic",
+  "owner": {
+    "name": "Dual Logic",
+    "email": "brady@duallogic.ai"
+  },
+  "plugins": [
+    {
+      "name": "gtm-brain",
+      "source": "./",
+      "description": "Interviews a business operator and produces a tiered, org-specific GTM-Brain spec (Strategy Readout over Build Spec). A self-serve, tool-agnostic build kit for the YPO MarTech Forum.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Dual Logic",
+        "email": "brady@duallogic.ai"
+      }
+    }
+  ]
+}

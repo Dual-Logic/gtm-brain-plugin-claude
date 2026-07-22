@@ -76,14 +76,65 @@ gtm-brain-plugin/
 
 ## Install
 
-See [the install guide](#install-guide-non-developer) below. In short: this is a standard Claude
-plugin (`.claude-plugin/`-rooted). It reaches Cowork the way Claude plugins do today — via the plugin
-marketplace or a repo-declared plugin entry — not a drag-and-drop upload.
-
-<!-- INSTALL-GUIDE: finalized in U8 -->
+This is a standard Claude plugin (`.claude-plugin/`-rooted). It reaches Cowork the way Claude plugins
+do today — through the plugin **marketplace** or a **repo-declared** settings entry. There is
+currently **no drag-and-drop `.plugin` upload** in Cowork; the marketplace path below is the
+supported route. (A reproducible zip is available via `scripts/package-plugin.sh` for archival or any
+future manual-upload path.)
 
 ### Install guide (non-developer)
-*Finalized during packaging (U8).*
+
+The plugin installs the same way in **Cowork** (type the commands in chat; pickers open in the
+sidebar) and the **Claude Code CLI** (type them in the terminal).
+
+**1. One-time — add the Dual Logic marketplace:**
+
+```text
+/plugin marketplace add Dual-Logic/gtm-brain-plugin
+```
+
+**2. Install the plugin, then reload:**
+
+```text
+/plugin install gtm-brain@dual-logic
+/reload-plugins
+```
+
+Choose the scope when prompted (user / project).
+
+**3. Start the interview** — invoke the entry skill and follow the prompts:
+
+```text
+/gtm-brain
+```
+
+It creates `gtm-brain-spec.md` in your current project and walks you through the four phases. Stop
+anytime; run `/gtm-brain` again to resume where you left off.
+
+> **Private repo note.** `Dual-Logic/gtm-brain-plugin` is private, so your machine must be able to
+> reach it over git first — sign in once with `gh auth login` (or have SSH access to the repo). Claude
+> then uses your existing git credentials automatically; no extra flag is needed.
+
+### Repo-declared (auto-load in a project / cloud session)
+
+To auto-load the plugin for anyone who opens a given project, commit this to that project's
+`.claude/settings.json`:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "dual-logic": {
+      "source": { "source": "github", "repo": "Dual-Logic/gtm-brain-plugin" }
+    }
+  },
+  "enabledPlugins": {
+    "gtm-brain@dual-logic": true
+  }
+}
+```
+
+The marketplace registers and the plugin enables at session start — no manual `/plugin marketplace
+add` needed.
 
 ## Status
 

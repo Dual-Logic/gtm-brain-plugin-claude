@@ -1,0 +1,9 @@
+# Build artifacts — reproducible via scripts/package-plugin.sh
+dist/
+
+# OS / editor cruft
+.DS_Store
+*.swp
+
+# A produced working doc, if one is ever created inside this repo during testing
+/gtm-brain-spec.md
