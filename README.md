@@ -1,36 +1,57 @@
 # gtm-brain-plugin
 
-A tool-agnostic **Claude Cowork plugin** that interviews a business owner and produces one tiered, org-specific **GTM Brain** spec:
+A guided interview that turns a ~30–60 minute conversation with a business owner into **one org-specific GTM Brain spec** — a plain-language **Strategy Readout** over a builder-ready, provenance-tagged **Build Spec**, plus an **Open Items / Next Steps** hand-off list.
 
-- a **Strategy Readout** — plain-language, the part you read and confirm ("yes, this is my business"), and
-- a **Build Spec** — a builder-ready technical body your engineer or vendor can execute from,
+The owner drives only the **business layer** (their goals, the decisions they most want automated, their actual tools); the plugin does the technical lifting via **propose-and-confirm**. It's tool-agnostic (names capabilities, maps them onto the owner's named tools, ships no vendor connectors), grounds itself with **public web research only**, and works for any business type — three archetype *lenses* (SaaS, professional services, e-commerce) shape emphasis on top of a universal GTM-Brain skeleton.
 
-plus an **Open Items / Next Steps** list that becomes the agenda for the hand-off conversation with your technical team.
+Built as a self-serve build kit for the **YPO MarTech Forum**; companion to the on-stage runtime demo [`Dual-Logic/brainRoadshow`](https://github.com/Dual-Logic/brainRoadshow) (not modified here).
 
-You drive the business layer (your goals, the decisions you most want automated, your actual tools). The plugin does the technical lifting — it *proposes* the architecture and you confirm or correct it in plain language, never authoring technical content yourself. Every technical claim is tagged so a builder can tell what you decided (`[Stated]`) from what the plugin inferred (`[Proposed — confirmed]`) from what still needs your team (`[Open]`). Takes ~30–60 minutes. Works for any business type — the three shipped archetype *lenses* (SaaS, professional services, e-commerce) only shape emphasis on top of a universal GTM-Brain skeleton.
+## Two builds, one product
 
-Built as a self-serve build kit for the **YPO MarTech Forum**, and a companion to the on-stage runtime demo [`Dual-Logic/brainRoadshow`](https://github.com/Dual-Logic/brainRoadshow) (this repo does not modify it).
+This repo ships the **same product for two AI platforms**. Pick the folder for your surface — each is a self-contained, installable plugin with its own README:
 
-## How to use it
+| Folder | Platform | Package format | Start here |
+|---|---|---|---|
+| [`claude/`](claude/) | **Claude Cowork** | `.claude-plugin/plugin.json` + skills/reference; distributed as a zipped `.plugin` bundle | [`claude/README.md`](claude/README.md) |
+| [`chatgpt/`](chatgpt/) | **ChatGPT Work mode + Codex** | `.codex-plugin/plugin.json` + skills/reference; installed from Plugins or a marketplace | [`chatgpt/README.md`](chatgpt/README.md) |
 
-1. **Install** — in Claude Cowork, add the plugin (upload the `.plugin` bundle, or install from this repo).
-2. **Start** — invoke the `gtm-brain` skill. It creates your working document (`gtm-brain-spec.md`) in your project and walks you through four short phases:
-   1. **Profile & goals** — it researches your website first, then runs a real discovery conversation about your business, your GTM motions and channels, the decisions you want automated, and your tools.
-   2. **Strategy Readout** — a plain-language picture of your GTM Brain; you confirm it's really your business before anything technical is finalized.
-   3. **Build Spec** — the plugin drafts the full technical body, researches whether your named tools can actually be integrated (APIs / MCPs), and you refine it by reacting to proposals.
-   4. **Finalize** — meta-sections (roadmap, cost, risk, team, maturity), a coherence-check QA pass, and your Open Items hand-off list.
-3. **Resume anytime** — the interview persists as it goes. Come back in a new session and `gtm-brain` picks up where you left off, even mid-phase.
-4. **Hand off** — give the finished `gtm-brain-spec.md` to your technical person or vendor and walk the Open Items list together.
+Both produce the identical deliverable and hold the identical design rules (universal skeleton + lenses, provenance tags, the load-bearing architecture, ground-every-specific, build-on-existing-tools). They differ only where the *platform* forces it:
 
-The plugin **connects to none of your internal systems** and sends nothing on your behalf. It does use **public web research** — your public website, and public API/MCP docs for the tools you name — to ground the spec. See [`CONNECTORS.md`](CONNECTORS.md).
+- **`claude/` is the source of record.** It is the original build (v0.3.0).
+- **`chatgpt/` is the converted, skills-only OpenAI build**, following OpenAI/ChatGPT plugin conventions (skills-only, `.codex-plugin` manifest, no connectors).
 
-## What's inside
+> Internal planning material — the source architecture templates, implementation plans, the OpenAI plugin-conventions guide, the conversion plan, and validation tracking — is kept **local only** (under each build's `docs/` folder) and is not shipped in this repo.
 
+### What changed in the ChatGPT build (and why)
+
+| Concern | `claude/` | `chatgpt/` |
+|---|---|---|
+| Manifest | `.claude-plugin/plugin.json` | `.codex-plugin/plugin.json` (adds an `interface` block for ChatGPT surfacing) |
+| Runtime paths | `${CLAUDE_PROJECT_DIR}` / `${CLAUDE_PLUGIN_ROOT}` | surface-aware wording + relative reference paths (`../../reference/…`); no env vars |
+| Working doc | `${CLAUDE_PROJECT_DIR}/gtm-brain-spec.md` | `<workspace-root>/gtm-brain-spec.md` in Codex; the active Work-mode document otherwise; never inside the plugin dir |
+| Research steps | three spawned subagents (`org-researcher`, `system-architect`, `coherence-checker`) | the same procedures folded **inline** into each skill, backed by `skills/<name>/references/` — OpenAI's skills model has no subagent-spawn mechanism |
+| Provenance tags | em-dash (`[Proposed — confirmed]`) | ASCII hyphen (`[Proposed - confirmed]`) |
+
+Everything else — the interview flow, the resonance gate, the skeleton, the lenses, the Open-Items derivation — is preserved verbatim.
+
+## How to install & start
+
+**Claude Cowork** (from `claude/`):
+
+```bash
+cd claude
+zip -r dist/gtm-brain-plugin-<ver>.zip .claude-plugin skills reference README.md CONNECTORS.md
 ```
-skills/     gtm-brain (entry/resume) + profile-and-goals, strategy-readout, build-spec, finalize
-            agents: org-researcher (P1) · system-architect (P3) · coherence-checker (P4)
-reference/  gtm-brain-skeleton.md, output-template.md, working-doc-convention.md,
-            capability-map.md, lens-guide.md, lenses/{saas,professional-services,e-commerce}.md
-```
 
-The implementation plan of record is [`docs/plans/2026-07-22-002-feat-gtm-brain-plugin-plan.md`](docs/plans/2026-07-22-002-feat-gtm-brain-plugin-plan.md). (An earlier `-001-` plan and a `dist/` v0.1.0 bundle predate this build and are superseded — this plugin is a fresh, owner-first build.)
+Add/upload the resulting `.plugin` bundle in Cowork, then invoke the `gtm-brain` skill to start. Full details: [`claude/README.md`](claude/README.md).
+
+**ChatGPT Work mode / Codex** (from `chatgpt/`):
+
+Install the `chatgpt/` package from Plugins or a configured marketplace, start a new chat/session, then ask *"Start my GTM Brain spec."* Full details: [`chatgpt/README.md`](chatgpt/README.md).
+
+## Status
+
+- **`claude/` — v0.3.0**, structurally complete and reviewed; **live Cowork validation is the remaining acceptance gate** (run the full interview end-to-end with a human in Cowork).
+- **`chatgpt/` — converted 2026-07-23**; static structural checks pass. The OpenAI validator scripts and live ChatGPT/Codex workflow, surface, and golden-prompt testing are still pending (tracked in the local `chatgpt/docs/VALIDATION.md`).
+
+Neither build has yet been exercised end-to-end in its host runtime; that is the shared next step for both.

@@ -1,0 +1,29 @@
+{
+  "name": "gtm-brain",
+  "version": "0.3.0",
+  "description": "Interview a business owner and produce a tiered, org-specific GTM Brain spec: a plain-language Strategy Readout over a builder-ready, provenance-tagged Build Spec, plus an Open Items handoff list. Research-grounded (public web), tool-agnostic; any business type; ~30-60 minutes.",
+  "author": {
+    "name": "Dual Logic",
+    "url": "https://duallogic.ai"
+  },
+  "homepage": "https://github.com/Dual-Logic/gtm-brain-plugin",
+  "repository": "https://github.com/Dual-Logic/gtm-brain-plugin",
+  "license": "UNLICENSED",
+  "keywords": ["gtm", "go-to-market", "revops", "strategy", "interview"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "GTM Brain",
+    "shortDescription": "Create a GTM Brain spec through a guided interview.",
+    "longDescription": "GTM Brain interviews a business owner and produces a plain-language Strategy Readout, a builder-ready Build Spec, and an Open Items handoff list. It is tool-agnostic and ships no connectors — it names capabilities and maps them onto the tools the owner already uses.",
+    "developerName": "Dual Logic",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://duallogic.ai/",
+    "defaultPrompt": [
+      "Start my GTM Brain spec.",
+      "Resume my GTM Brain interview.",
+      "Review my GTM Brain open items."
+    ],
+    "brandColor": "#2563EB"
+  }
+}
