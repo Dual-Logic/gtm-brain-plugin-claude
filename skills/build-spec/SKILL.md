@@ -34,6 +34,17 @@ Fill **Part 2 — Build Spec** of the template for *this* org:
 
 **Tag every material decision** with `[Stated]`, `[Proposed — confirmed]` (mark as `[Proposed]` until the owner ratifies), or `[Open — needs your team]`. Anything the org hasn't supplied and you can't safely infer is `[Open]` — never fabricate a value. Anything a chosen decision needs but the org lacks (a data source, a capability, a tool) is `[Open]`, with what's required stated.
 
+## Step 1b — Feasibility research (system-architect agent)
+
+Before walking the owner through the draft, pressure-test whether it's actually buildable on their stack — don't assume the integrations exist. Spawn the **system-architect agent** (`${CLAUDE_PLUGIN_ROOT}/skills/build-spec/agents/system-architect.md`), passing the draft's capability→tool pairings, the priority decisions, and the unit of decision. It researches each tool's real integration surface (APIs, webhooks, official MCP servers, reverse-ETL support) and returns a feasibility verdict per capability plus a recommended home for the decision logic.
+
+Fold its findings back into the body:
+- **§2.2 capability → tool table** — add each pairing's feasibility note with a citation, tagged `[Proposed]` (the builder verifies exact endpoints), or `[Open — needs your team]` where the agent found a genuine gap.
+- **Open Items** — route every `gap` it reports (a capability with no tool, or a tool with no viable integration for what a decision needs) to `[Open]`, with what's required.
+- **Decision-engine home** — use its recommendation to ground how and where the Brain runs (skeleton L7/L8), tagged `[Proposed]`.
+
+**If the agent returns `no_web_access`** (or no research tool exists): don't block — keep the capability→tool mappings as prose-level `[Proposed]`, and add one Open Item noting that integration feasibility (APIs/MCPs) still needs a builder to confirm.
+
 ## Step 2 — Refine by reacting (one item at a time, with a recommendation)
 
 Rank the draft's `[Proposed]` items by risk — the ones where being wrong costs the most (identity approach, a decision policy, a key data source, a tool mapping) — and walk the owner through the **highest-risk items first, strictly one at a time.** Present a single item, get their response, resolve it, and only then move to the next. **Never present two or three at once** — batching them makes the owner rubber-stamp things they can't weigh.
@@ -72,3 +83,4 @@ When the high-risk items are confirmed and the body is drafted end to end, updat
 - Confirm high-risk items strictly one at a time, each with a clear recommendation the owner reacts to — never batch two or three together.
 - Bound the confirm loop by risk and time; low-risk `[Proposed]` items ride to Open Items rather than a full interrogation.
 - Hold to the skeleton's layers — never collapse the fact layer or the models layer into events/features/policy. The event clock and the models-compute / LLMs-narrate split are non-negotiable; Step 3 checks for them.
+- Feasibility is researched, not assumed — the system-architect agent's findings enter the spec as `[Proposed]` with citations; genuine integration gaps become `[Open]`, never hand-waved.
