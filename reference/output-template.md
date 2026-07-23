@@ -66,7 +66,7 @@ For each layer, state the org-specific fill with provenance tags:
 - **L0 Sources** — `{{sources}}` `[tag]`
 - **L1 Ingestion & streaming** — `{{two-speed plan}}` `[tag]`
 - **L2 Identity resolution** — `{{strategy + confidence tiers}}` `[tag]`
-- **L3 Context graph** — content / entity / fact fill, incl. the first ~15 fact predicates `[tag]`
+- **L3 Context graph** — all three sub-layers, explicitly: content (evidence), entity (resolved), and the **bi-temporal fact layer / event clock** — time-bounded, sourced assertions (`valid_from`/`valid_to`, `confidence`, source), incl. the first ~15 fact predicates. Do not collapse the fact layer into event names or features. `[tag]`
 - **L4 Features** — `{{computed features}}` `[tag]`
 - **L5 Models** — `{{models + calibration note}}` `[tag]`
 - **L6 Summary stores** — `{{stores}}` `[tag]`
@@ -75,6 +75,7 @@ For each layer, state the org-specific fill with provenance tags:
 - **L9 Learning loop** — `{{outcomes, traces, backtest, shadow, retrain}}` `[tag]`
 - **L10 Human strategy layer** — `{{ICP/segments, guardrails, cadences}}` `[tag]`
 - **Cross-cutting spines** — observability, data quality, security/privacy/compliance, orchestration `[tag]`
+- **Coexistence & write-back** — which existing rails the Brain sits on top of; the **one-decision-maker rule** (turn off a rail's native automation for any program the Brain now decides); Brain-originated writes tagged and excluded from ingestion (loop prevention). `[tag]`
 
 ### 2.2 Capability → tool mapping
 
@@ -82,7 +83,10 @@ A table: required capability (generic) → the org's named tool → build/buy no
 
 ### 2.3 Data contracts
 
-The org's entity, fact, and decision-trace shapes (from the skeleton's canonical contracts, adapted to the org's vocabulary).
+The org's entity, fact, and decision-trace shapes, adapted from the skeleton's canonical contracts to the org's vocabulary. Two things must survive the adaptation — do not simplify them away:
+
+- the **fact** shape is bi-temporal — carries `valid_from`/`valid_to` **and** `knowledge_time` — so the builder can reconstruct *what was known when* (the precondition for honest measurement).
+- the **decision trace** retains `alternatives_considered` and `explanation` (why this action, why not the runner-up) alongside the chosen action and outcome. A trace of only chosen-action + outcome is not enough — the alternatives and the reason are the compounding asset that lets you later ask "was that the right call?"
 
 ### 2.4 Worked example — one decision, end to end
 

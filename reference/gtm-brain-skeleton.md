@@ -96,6 +96,8 @@ Let leaders steer without touching code, and stay accountable for the objectives
 
 The Brain does **not** replace the org's systems of record. Their **system(s) of record for state** stay canonical (CRM / commerce platform / PSA); the **warehouse stays for analytics**; execution **rails stay the rails** (ESP / ads / email). The Brain is the **system of record for events and decisions** — the layer that captures the event clock and makes the rest of the stack intelligent. It sits on top of, and writes back selectively into, the existing stack.
 
+**One decision-maker per channel.** Wherever the Brain takes over a decision a rail used to make on its own (e.g. an ESP's native win-back flow, a CRM's routing rules), turn that native automation **off** — two decision-makers on one channel produce frequency chaos and muddy every measurement. Tag every Brain-originated write (`brain_source=true` or a namespaced field prefix) and **exclude it from ingestion**, so a score the Brain wrote back never becomes its own input.
+
 ---
 
 ## Anti-patterns to guard against (org-agnostic)
