@@ -17,8 +17,10 @@ This repo ships the **same product for two AI platforms**. Pick the folder for y
 
 Both produce the identical deliverable and hold the identical design rules (universal skeleton + lenses, provenance tags, the load-bearing architecture, ground-every-specific, build-on-existing-tools). They differ only where the *platform* forces it:
 
-- **`claude/` is the source of record.** It is the original build (v0.3.0), including the source architecture templates and the implementation plans under `claude/docs/`.
-- **`chatgpt/` is the converted, skills-only OpenAI build.** The conversion followed two guidance docs, both kept in `chatgpt/docs/`: [`openai-chatgpt-plugin-conventions.md`](chatgpt/docs/openai-chatgpt-plugin-conventions.md) (the conventions any future extension must follow) and [`plans/openai-chatgpt-work-conversion-plan.md`](chatgpt/docs/plans/openai-chatgpt-work-conversion-plan.md).
+- **`claude/` is the source of record.** It is the original build (v0.3.0).
+- **`chatgpt/` is the converted, skills-only OpenAI build**, following OpenAI/ChatGPT plugin conventions (skills-only, `.codex-plugin` manifest, no connectors).
+
+> Internal planning material — the source architecture templates, implementation plans, the OpenAI plugin-conventions guide, the conversion plan, and validation tracking — is kept **local only** (under each build's `docs/` folder) and is not shipped in this repo.
 
 ### What changed in the ChatGPT build (and why)
 
@@ -50,6 +52,6 @@ Install the `chatgpt/` package from Plugins or a configured marketplace, start a
 ## Status
 
 - **`claude/` — v0.3.0**, structurally complete and reviewed; **live Cowork validation is the remaining acceptance gate** (run the full interview end-to-end with a human in Cowork).
-- **`chatgpt/` — converted 2026-07-23**; static structural checks pass. The OpenAI validator scripts and live ChatGPT/Codex workflow, surface, and golden-prompt testing are still pending — see [`chatgpt/docs/VALIDATION.md`](chatgpt/docs/VALIDATION.md).
+- **`chatgpt/` — converted 2026-07-23**; static structural checks pass. The OpenAI validator scripts and live ChatGPT/Codex workflow, surface, and golden-prompt testing are still pending (tracked in the local `chatgpt/docs/VALIDATION.md`).
 
 Neither build has yet been exercised end-to-end in its host runtime; that is the shared next step for both.

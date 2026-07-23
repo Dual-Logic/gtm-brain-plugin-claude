@@ -33,4 +33,4 @@ reference/  gtm-brain-skeleton.md, output-template.md, working-doc-convention.md
             capability-map.md, lens-guide.md, lenses/{saas,professional-services,e-commerce}.md
 ```
 
-The implementation plan of record is [`docs/plans/2026-07-22-002-feat-gtm-brain-plugin-plan.md`](docs/plans/2026-07-22-002-feat-gtm-brain-plugin-plan.md). (An earlier `-001-` plan and a `dist/` v0.1.0 bundle predate this build and are superseded — this plugin is a fresh, owner-first build.)
+The implementation plan of record is kept locally at `docs/plans/2026-07-22-002-feat-gtm-brain-plugin-plan.md` (internal planning material, not shipped in this repo). (An earlier `-001-` plan and a `dist/` v0.1.0 bundle predate this build and are superseded — this plugin is a fresh, owner-first build.)

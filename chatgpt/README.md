@@ -30,7 +30,7 @@ One working document — the GTM Brain spec — that fills in as the interview p
 
 ## How to start
 
-1. **Install** the plugin from Plugins, or from a configured marketplace (see [`docs/plans/openai-chatgpt-work-conversion-plan.md`](docs/plans/openai-chatgpt-work-conversion-plan.md) for a local/personal marketplace entry).
+1. **Install** the plugin from Plugins, or from a configured marketplace (a personal `~/.agents/plugins/marketplace.json` for solo testing, or a repo `.agents/plugins/marketplace.json` for team distribution).
 2. **Start a new chat/session**, then ask to start or resume — e.g. *"Start my GTM Brain spec."* The `gtm-brain` skill creates your working document and walks you through four short phases:
    1. **Profile & goals** — it researches your website first (public web only), then runs a real discovery conversation about your business, GTM motions and channels, the decisions you want automated, and your tools.
    2. **Strategy Readout** — a plain-language picture of your GTM Brain; you confirm it's really your business before anything technical is finalized.
@@ -62,4 +62,4 @@ The interview persists as it goes, in the working document. On a new session, `g
 
 ## Validation status
 
-Static structural checks pass (manifest, no Claude-specific terms in active instructions, ASCII provenance tags, relative reference paths). The OpenAI validator scripts and live ChatGPT/Codex workflow, surface, and golden-prompt testing are still pending. See [`docs/VALIDATION.md`](docs/VALIDATION.md) for the full checklist and current status, and [`docs/openai-chatgpt-plugin-conventions.md`](docs/openai-chatgpt-plugin-conventions.md) for the conventions any future extension must follow.
+Static structural checks pass (manifest, no Claude-specific terms in active instructions, ASCII provenance tags, relative reference paths). The OpenAI validator scripts and live ChatGPT/Codex workflow, surface, and golden-prompt testing are still pending. The full checklist and current status live locally in `docs/VALIDATION.md`, and the conventions any future extension must follow live in `docs/openai-chatgpt-plugin-conventions.md` (internal planning material, not shipped in this repo).

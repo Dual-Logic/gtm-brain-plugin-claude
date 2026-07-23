@@ -13,4 +13,4 @@ If web-research tools aren't available in your surface, the plugin **degrades gr
 
 The GTM Brain spec it produces is **tool-agnostic**: it describes the *capabilities* your Brain needs (a system of record, a messaging rail, a warehouse, enrichment, …) and maps them onto **the tools you name during the interview** — it does not imply that any named-tool mapping has been verified live. Building the actual integrations is your (or your vendor's) job, downstream, from the spec.
 
-For how capabilities map to named tools inside the spec, see [`reference/capability-map.md`](reference/capability-map.md). If a future product decision adds a real connector, MCP server, or Apps SDK UI, follow [`docs/openai-chatgpt-plugin-conventions.md`](docs/openai-chatgpt-plugin-conventions.md) before defining any tools.
+For how capabilities map to named tools inside the spec, see [`reference/capability-map.md`](reference/capability-map.md). If a future product decision adds a real connector, MCP server, or Apps SDK UI, follow the OpenAI/ChatGPT plugin conventions (kept locally in `docs/openai-chatgpt-plugin-conventions.md`) before defining any tools.

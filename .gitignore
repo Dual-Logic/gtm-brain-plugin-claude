@@ -10,5 +10,9 @@ gtm-brain-spec.md
 # Internal project-orientation for Claude Code sessions — kept local, not shipped.
 /CLAUDE.md
 
+# Internal planning/reference material (architecture templates, plans, conventions,
+# conversion notes, validation tracking) — kept local, not shipped.
+docs/
+
 # OS / editor cruft
 .DS_Store
