@@ -25,6 +25,8 @@ Load the skeleton (`${CLAUDE_PLUGIN_ROOT}/reference/gtm-brain-skeleton.md`), the
 - *professional services:* relationship-strength facts (with decay), bid/no-bid expected value, conflict/independence as a blocking gate.
 - *SaaS:* buying-committee mapping, intent facts, expected-value prioritization.
 
+**Build on what they already run.** Check the captured tools and automations for existing internal primitives — a hiring-signal watcher, an autonomous drafter with a no-send gate, outreach/deal-review commands — and map the architecture, *especially the L8 agent roster and the L7 policy*, onto them: extend and connect what exists rather than proposing parallel new agents. If they already run a trigger subagent, the trigger-watch agent **is** that one — say so, tag it, and note what to change, not what to rebuild. For a lean team, "extend the tools you have" is a completely different (cheaper, faster) build than "stand up new agents."
+
 Fill **Part 2 — Build Spec** of the template for *this* org:
 
 - **2.1 Architecture body (L0–L10 + spines)** — the org-specific fill for each skeleton layer, driven by the priority decisions. Anchor the whole body on the org's **unit of decision**.
@@ -84,3 +86,5 @@ When the high-risk items are confirmed and the body is drafted end to end, updat
 - Bound the confirm loop by risk and time; low-risk `[Proposed]` items ride to Open Items rather than a full interrogation.
 - Hold to the skeleton's layers — never collapse the fact layer or the models layer into events/features/policy. The event clock and the models-compute / LLMs-narrate split are non-negotiable; Step 3 checks for them.
 - Feasibility is researched, not assumed — the system-architect agent's findings enter the spec as `[Proposed]` with citations; genuine integration gaps become `[Open]`, never hand-waved.
+- Build on the org's existing internal tools — map the agent roster onto what they already run (extend, don't reinvent); a parallel new agent where they already have one is waste.
+- Ground specifics — illustrate the worked example with a real captured account or a clearly-generic archetype ("a 250-person Series-B SaaS company"), never an invented named account/date/event.

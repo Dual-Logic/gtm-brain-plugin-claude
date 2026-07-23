@@ -39,7 +39,7 @@ captured_inputs:
 -->
 ```
 
-Keep the marker current at each step, not only at phase boundaries. Store **raw captured inputs**, not just synthesized output, so a mid-phase resume never re-asks a question the owner already answered.
+Keep the marker current at each step, not only at phase boundaries. Store **raw captured inputs**, not just synthesized output, so a mid-phase resume never re-asks a question the owner already answered. On completion, `finalize` moves this whole block to the **bottom** of the document so the finished spec opens straight into the title (see `working-doc-convention.md`); it stays an invisible HTML comment, record intact.
 
 ---
 

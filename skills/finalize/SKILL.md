@@ -46,9 +46,11 @@ For each: the item, its type, why it's open, and the specific question or decisi
 
 ## Step 4 — Polish & complete
 
-**Polish the markdown first — first impressions matter.** Make the document render cleanly: consistent heading levels, well-formed tables (aligned pipes, no broken rows), tidy spacing, no stray artifacts or half-finished lines. The phase-progress marker stays an HTML comment (it doesn't render), so it never clutters the reader's view.
+**Polish the markdown first — first impressions matter.** Make the document render cleanly: consistent heading levels, well-formed tables (aligned pipes, no broken rows), tidy spacing, no stray artifacts or half-finished lines.
 
-Then set the marker to `phase: complete`, `last_completed_step: finalized`. Tell the owner plainly: the spec is done; it has three parts — the Strategy Readout they confirmed, the Build Spec for their team, and the Open Items list to walk through together. Point them to the file and offer to revise any section.
+**Relocate the progress marker to the bottom.** During the interview it lives at the top so each phase can resume; the finished deliverable should open straight into the title, so move the whole HTML-comment block (marker + captured inputs) to the very end of the document. It stays an invisible comment and the captured record is fully preserved — just out of the reader's way.
+
+Then, in the relocated marker, set `phase: complete`, `last_completed_step: finalized`. Tell the owner plainly: the spec is done; it has three parts — the Strategy Readout they confirmed, the Build Spec for their team, and the Open Items list to walk through together. Point them to the file and offer to revise any section.
 
 ## Guardrails
 

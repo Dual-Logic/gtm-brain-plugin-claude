@@ -27,7 +27,7 @@ On any new session, the `gtm-brain` entry skill:
 
 1. Checks for `${CLAUDE_PROJECT_DIR}/gtm-brain-spec.md`.
 2. If absent → fresh start: create it from the template, orient the owner, route to `profile-and-goals`.
-3. If present → read the phase-progress marker, report to the owner what is captured and what is next in plain language, and route to the phase named by `phase:`, resuming at `last_completed_step` — **mid-phase, not at the top of the phase**. The captured raw inputs mean no already-answered question is re-asked.
+3. If present → read the phase-progress marker (at the **top** of the doc while the interview is in progress; at the **bottom** if the doc is already `complete`), report to the owner what is captured and what is next in plain language, and route to the phase named by `phase:`, resuming at `last_completed_step` — **mid-phase, not at the top of the phase**. The captured raw inputs mean no already-answered question is re-asked.
 
 ## Out-of-order guard (against description-match auto-triggering)
 
@@ -41,4 +41,4 @@ Phase order: `profile-and-goals` → `strategy-readout` → `build-spec` → `fi
 
 ## What "done" looks like
 
-When `finalize` completes, it sets `phase: complete` in the marker. A re-run then reports the spec is finished and points the owner to the Strategy Readout, Build Spec, and Open Items — offering to revise rather than restarting.
+When `finalize` completes, it sets `phase: complete` and **relocates the marker (and its captured inputs) from the top to the bottom of the document**, so the finished spec opens straight into the title. The record is preserved, just moved. A re-run then reports the spec is finished and points the owner to the Strategy Readout, Build Spec, and Open Items — offering to revise rather than restarting.

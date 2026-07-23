@@ -35,6 +35,7 @@ Present the readout and ask plainly: **"Does this read like your business? What'
 ## Guardrails
 
 - Business language only — if the owner needs a term explained, explain it in one clause, don't lecture.
+- Ground every specific. When you make the readout vivid, illustrate with a **real captured account** (from `captured_inputs`) — never invent a named account, date, or investor/event to sell the point. An ungrounded specific ("you touched Acme on the 8th") reads as real and breaks the owner's trust the moment they notice it isn't.
 - Revise in place on correction; never leave superseded readout text beside the corrected version.
 - The gate is real: no technical phase runs until confirmation is recorded.
 - Hand off to `build-spec` on confirmation; tell the owner what's next: "Now I'll draft the technical spec your team can build from — you'll confirm or correct what I propose."

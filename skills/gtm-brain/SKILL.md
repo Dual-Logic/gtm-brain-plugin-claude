@@ -26,7 +26,7 @@ Read `${CLAUDE_PLUGIN_ROOT}/reference/working-doc-convention.md` for the exact c
 
 ## Step 3 — Resume
 
-1. Read the whole working doc and its phase-progress marker.
+1. Read the whole working doc and its phase-progress marker (at the top during the interview; at the bottom if the spec is already `complete`).
 2. Report, in plain language: what's captured so far and what's next (e.g. "We've profiled your business and drafted your Strategy Readout; next we build the technical spec. Want to keep going?").
 3. Route to the phase named by `phase:`, resuming at `last_completed_step` — **mid-phase, not the top of the phase.** The captured raw inputs mean you never re-ask an answered question.
 4. If `phase: complete`, tell them the spec is finished, point them to the three parts (Strategy Readout, Build Spec, Open Items), and offer to revise a section rather than restarting.
