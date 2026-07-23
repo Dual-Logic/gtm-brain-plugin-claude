@@ -1,0 +1,15 @@
+{
+  "name": "dual-logic",
+  "owner": {
+    "name": "Dual Logic",
+    "url": "https://duallogic.ai"
+  },
+  "description": "Dual Logic's Claude Cowork plugins.",
+  "plugins": [
+    {
+      "name": "gtm-brain",
+      "source": "./",
+      "description": "Interview a business owner and produce a tiered, org-specific GTM Brain spec: a plain-language Strategy Readout over a builder-ready, provenance-tagged Build Spec, plus an Open Items handoff list. Research-grounded (public web), tool-agnostic; any business type; ~30-60 minutes."
+    }
+  ]
+}

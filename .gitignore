@@ -1,17 +1,16 @@
-# Build artifacts — the installable .plugin bundle is a release asset, not source.
-# (Claude build only, at claude/dist/; matches any dist/ dir. The tracked release
-# zip is force-added past this rule. The chatgpt/ build ships no dist/.)
+# Build artifacts. The installable .plugin bundle under dist/ is a release asset,
+# not source; the tracked release zip is force-added past this rule.
 dist/
 
-# The working document is created in a user's own project/workspace at runtime, never
-# here. Also matches the sample output kept under claude/docs/output example/.
+# The working document is created in a user's own project/workspace at runtime,
+# never here.
 gtm-brain-spec.md
 
 # Internal project-orientation for Claude Code sessions — kept local, not shipped.
 /CLAUDE.md
 
-# Internal planning/reference material (architecture templates, plans, conventions,
-# conversion notes, validation tracking) — kept local, not shipped.
+# Internal planning/reference material (plans, conventions, validation tracking) —
+# kept local, not shipped.
 docs/
 
 # OS / editor cruft
