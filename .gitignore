@@ -1,5 +1,5 @@
-# Build artifacts. The installable .plugin bundle under dist/ is a release asset,
-# not source; the tracked release zip is force-added past this rule.
+# Build artifacts. The installable .plugin bundle is built locally under dist/ and is
+# NOT tracked here — a nested .zip inside the repo breaks Claude marketplace install.
 dist/
 
 # The working document is created in a user's own project/workspace at runtime,

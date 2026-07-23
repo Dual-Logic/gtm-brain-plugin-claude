@@ -20,7 +20,7 @@ Built as a self-serve build kit for the **YPO MarTech Forum**, and a companion t
    /plugin install gtm-brain@dual-logic
    ```
 
-   (Or upload the `.plugin` bundle from [`dist/`](dist/) directly in Cowork.)
+   (Or build a `.plugin` bundle locally and upload it directly in Cowork — see [What's inside](#whats-inside).)
 2. **Start** — invoke the `gtm-brain` skill. It creates your working document (`gtm-brain-spec.md`) in your project and walks you through four short phases:
    1. **Profile & goals** — it researches your website first, then runs a real discovery conversation about your business, your GTM motions and channels, the decisions you want automated, and your tools.
    2. **Strategy Readout** — a plain-language picture of your GTM Brain; you confirm it's really your business before anything technical is finalized.
@@ -40,4 +40,10 @@ reference/  gtm-brain-skeleton.md, output-template.md, working-doc-convention.md
             capability-map.md, lens-guide.md, lenses/{saas,professional-services,e-commerce}.md
 ```
 
-The installable `.plugin` bundle is in [`dist/`](dist/) (`gtm-brain-plugin-0.3.0.zip`) for direct upload in Cowork. The implementation plan of record is kept locally under `docs/plans/` (internal planning material, not shipped in this repo).
+**Direct-upload alternative to the marketplace:** build a `.plugin` bundle locally, then upload the zip in Cowork:
+
+```
+zip -r dist/gtm-brain-plugin-0.3.0.zip .claude-plugin/plugin.json skills reference README.md CONNECTORS.md
+```
+
+The bundle is a **local build artifact — not tracked in this repo**, because a nested `.zip` inside the repo breaks marketplace install (note `dist/` is gitignored; the zip omits `marketplace.json`). The implementation plan of record is kept locally under `docs/plans/` (internal planning material, not shipped in this repo).
