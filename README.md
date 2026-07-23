@@ -1,10 +1,35 @@
 # gtm-brain-plugin
 
-A tool-agnostic **Claude Cowork plugin** that interviews a business operator and produces a tiered, org-specific **GTM Brain** spec — a *Strategy Readout* (operator-facing) over a *Build Spec* (technical-team-facing). Built as a self-serve build kit for the **YPO MarTech Forum**.
+A tool-agnostic **Claude Cowork plugin** that interviews a business owner and produces one tiered, org-specific **GTM Brain** spec:
 
-**Status:** empty scaffold — nothing is built yet. The implementation-ready plan is the starting point:
-[`docs/plans/2026-07-22-001-feat-gtm-brain-plugin-plan.md`](docs/plans/2026-07-22-001-feat-gtm-brain-plugin-plan.md).
+- a **Strategy Readout** — plain-language, the part you read and confirm ("yes, this is my business"), and
+- a **Build Spec** — a builder-ready technical body your engineer or vendor can execute from,
 
-The build is sequenced archetypes-first: author the output template + fixed GTM-Brain skeleton, then three archetype exemplar specs (mid-market SaaS, professional services, e-commerce), then the plugin scaffold and the per-phase interview skills. See the plan's Implementation Units.
+plus an **Open Items / Next Steps** list that becomes the agenda for the hand-off conversation with your technical team.
 
-Companion to the on-stage runtime demo, [`Dual-Logic/brainRoadshow`](https://github.com/Dual-Logic/brainRoadshow) — this repo does not modify it.
+You drive the business layer (your goals, the decisions you most want automated, your actual tools). The plugin does the technical lifting — it *proposes* the architecture and you confirm or correct it in plain language, never authoring technical content yourself. Every technical claim is tagged so a builder can tell what you decided (`[Stated]`) from what the plugin inferred (`[Proposed — confirmed]`) from what still needs your team (`[Open]`). Takes ~30–60 minutes. Works for any business type — the three shipped archetype *lenses* (SaaS, professional services, e-commerce) only shape emphasis on top of a universal GTM-Brain skeleton.
+
+Built as a self-serve build kit for the **YPO MarTech Forum**, and a companion to the on-stage runtime demo [`Dual-Logic/brainRoadshow`](https://github.com/Dual-Logic/brainRoadshow) (this repo does not modify it).
+
+## How to use it
+
+1. **Install** — in Claude Cowork, add the plugin (upload the `.plugin` bundle, or install from this repo).
+2. **Start** — invoke the `gtm-brain` skill. It creates your working document (`gtm-brain-spec.md`) in your project and walks you through four short phases:
+   1. **Profile & goals** — your business, the decisions you want automated, your tools.
+   2. **Strategy Readout** — a plain-language picture of your GTM Brain; you confirm it's really your business before anything technical is finalized.
+   3. **Build Spec** — the plugin drafts the full technical body and you refine it by reacting to proposals.
+   4. **Finalize** — meta-sections (roadmap, cost, risk, team, maturity) and your Open Items hand-off list.
+3. **Resume anytime** — the interview persists as it goes. Come back in a new session and `gtm-brain` picks up where you left off, even mid-phase.
+4. **Hand off** — give the finished `gtm-brain-spec.md` to your technical person or vendor and walk the Open Items list together.
+
+The plugin **ships no connectors and calls no tools** — it only asks what you use and writes your spec. See [`CONNECTORS.md`](CONNECTORS.md).
+
+## What's inside
+
+```
+skills/     gtm-brain (entry/resume) + profile-and-goals, strategy-readout, build-spec, finalize
+reference/  gtm-brain-skeleton.md, output-template.md, working-doc-convention.md,
+            capability-map.md, lens-guide.md, lenses/{saas,professional-services,e-commerce}.md
+```
+
+The implementation plan of record is [`docs/plans/2026-07-22-002-feat-gtm-brain-plugin-plan.md`](docs/plans/2026-07-22-002-feat-gtm-brain-plugin-plan.md). (An earlier `-001-` plan and a `dist/` v0.1.0 bundle predate this build and are superseded — this plugin is a fresh, owner-first build.)
