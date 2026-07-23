@@ -1,0 +1,12 @@
+{
+  "name": "gtm-brain",
+  "version": "0.2.0",
+  "description": "Interview a business owner and produce a tiered, org-specific GTM Brain spec: a plain-language Strategy Readout over a builder-ready, provenance-tagged Build Spec. Tool-agnostic; any business type; ~30-60 minutes.",
+  "author": {
+    "name": "Dual Logic",
+    "url": "https://duallogic.ai"
+  },
+  "homepage": "https://github.com/Dual-Logic/gtm-brain-plugin",
+  "license": "UNLICENSED",
+  "keywords": ["gtm", "go-to-market", "revops", "strategy", "interview"]
+}

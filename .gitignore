@@ -1,0 +1,8 @@
+# Build artifacts — the installable .plugin bundle is a release asset, not source.
+dist/
+
+# The working document is created in a user's own project at runtime, never here.
+gtm-brain-spec.md
+
+# OS / editor cruft
+.DS_Store
